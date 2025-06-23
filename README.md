@@ -1,114 +1,141 @@
+
+
+---
+
+```markdown
 # 🧠 Financial News Impact Analyzer — Multi-Agent System (Draconic AI Case Study)
 
-This project is a **multi-agent AI system** built using `pydantic-ai` and OpenAI's GPT-4o model to analyze the financial impact of news articles. It simulates how a team of AI agents can collaboratively:
+This project implements a **multi-agent AI system** using `pydantic-ai` and OpenAI's GPT-4o to analyze financial news articles. It simulates a team of specialized agents to:
 
-- Determine the sentiment of a news article
-- Predict its market impact
-- Flag any forward-looking, regulatory, or ethical risks
+- Determine the **sentiment** of the article
+- Predict its **market impact**
+- Flag **risks** such as forward-looking statements, regulatory red flags, or ethical concerns
 
 ---
 
 ## 📌 Problem Statement
 
-Given financial news articles, build an AI system that can intelligently route them through multiple specialized agents to output structured, explainable insights. The goal is to mirror how analysts evaluate sentiment, impact, and risk — but using agents.
+Given financial news articles, the system must route them through specialized agents to produce structured insights—much like how real analysts evaluate finance-related narratives.
 
 ---
 
 ## 📁 Project Structure
 
-├── agents/
-│ ├── sentiment_agent.py # Agent for classifying sentiment
-│ ├── impact_agent.py # Agent for predicting market impact
-│ └── risk_agent.py # Agent for risk analysis
-├── evaluation/
-│ ├── test_cases.json # 5 sample financial news test articles
-│ └── run_tests.py # Script to evaluate all test cases
-├── main.py # Central orchestrator for single article analysis
-├── .env # Your OpenAI API key (keep secret)
-├── requirements.txt # All dependencies
-└── README.md #
+```
 
+your-name-case-study/
+├── agents/
+│   ├── sentiment\_agent.py         # Sentiment classifier
+│   ├── impact\_agent.py            # Market impact predictor
+│   └── risk\_agent.py              # Risk flagging agent
+├── evaluation/
+│   ├── test\_cases.json            # 5 news article test cases
+│   └── run\_tests.py               # Script to evaluate agents on test data
+├── main.py                        # Central orchestrator (uses all 3 agents)
+├── .env                           # Contains your OpenAI API key
+├── requirements.txt               # Required dependencies
+└── README.md                      # You're reading it
+
+````
 
 ---
 
-## 🛠 Installation & Setup
+## 🛠️ Installation & Setup
 
-> 📦 Prerequisites:
-> - Python 3.8+
-> - OpenAI API key
-> - `git` installed
+> Requirements: Python 3.8+, OpenAI API key, Git
 
- ✅ Clone the repository:
+### 🔹 Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
+````
 
-✅ Create .env file:
+### 🔹 Create `.env` file
 
-echo OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx > .env
-✅ Create virtual environment:
+```bash
+echo OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx > .env
+```
 
+### 🔹 Create a Virtual Environment
+
+```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-✅ Install dependencies:
+source venv/bin/activate         # On Windows: venv\Scripts\activate
+```
 
+### 🔹 Install Dependencies
+
+```bash
 pip install -r requirements.txt
-🚀 How to Run
-🔹 Run the multi-agent analyzer on a single articlebash
+```
 
+---
+
+## 🚀 Usage
+
+### ▶️ Run on a Single Article
+
+```bash
 python main.py
-This will print structured output for sentiment, market impact, and risks.
+```
 
-🔹 Run all 5 test cases (from PDF)
+### 🧪 Run on All Test Cases
 
+```bash
 python evaluation/run_tests.py
-This runs the system on real-world-like examples and prints JSON results.
+```
 
-🤖 Agents Description
-Agent	Description
-SentimentAgent	Analyzes whether the article tone is positive, negative, or neutral. Includes confidence and reasoning.
-MarketImpactAgent	Predicts the likely market reaction (high/medium/low) with justification.
-RiskFlagAgent	Flags forward-looking uncertainty, regulatory, or ethical concerns. Returns structured booleans + notes.
+> The results for all five test articles will be printed in structured JSON format.
 
-Each agent uses pydantic_ai.Agent() with its own prompt and output schema.
+---
 
-✅ Test Case Insights
-We tested on 5 diverse articles:
+## 🧠 Agent Roles
 
-✅ Tesla profits with Musk warning — flagged uncertainty
+| Agent               | Task                                                                |
+| ------------------- | ------------------------------------------------------------------- |
+| `SentimentAgent`    | Classifies article tone as positive/neutral/negative + confidence.  |
+| `MarketImpactAgent` | Predicts article's market impact (high, medium, low) + explanation. |
+| `RiskFlagAgent`     | Flags forward-looking, regulatory, or ethical risks (True/False).   |
 
-✅ Amazon AGI investment — flagged regulatory risk
+Each agent is independently prompted and returns strict, typed responses using Pydantic models.
 
-✅ ByteDance — sentiment positive but regulatory risk true
+---
 
-✅ CureGen FDA approval — skepticism caught, impact medium
+## 📊 Test Case Highlights
 
-✅ FirstState Bank — accurate earnings call analysis
+| ID      | Notable Behaviors                                                             |
+| ------- | ----------------------------------------------------------------------------- |
+| FIN-001 | Musk's warning flagged as forward-looking uncertainty                         |
+| FIN-002 | FDA approval news = positive sentiment, but impact = medium due to skepticism |
+| FIN-003 | AGI announcement flagged high impact + regulatory risk                        |
+| FIN-004 | Strong bank earnings but risk = low (correct)                                 |
+| FIN-005 | ByteDance growth + regulatory clouds = risk flagged                           |
 
-All agents returned structured outputs with high consistency.
+---
 
-🧪 Evaluation Summary
-Clear agent separation = high explainability
+## ✅ Evaluation Summary
 
-Strict Pydantic schemas reduced hallucinations
+* 💡 **Specialized agents** = modularity & clarity
+* 🔍 **Prompt engineering** refined through 3 iterations per agent
+* ✅ **All test cases returned complete, structured responses**
+* 🔄 **Risk and sentiment often aligned; agents worked in tandem**
+* 🧪 **Run-time evaluation framework** helps debug + extend easily
 
-Prompts iteratively refined for reliability
+---
 
-Risk agent improved drastically after 3rd iteration
+## 💡 Future Work
 
-System gracefully handles ambiguity (e.g., speculative news)
+* Add Streamlit UI or dashboard
+* Allow CSV batch input
+* Score performance vs labeled dataset
+* Add agent confidence thresholding logic
 
-📬 Submission Checklist
- Working code with prompt-engineered agents
+---
 
- 5 test cases implemented in JSON
 
- Documented architecture, reasoning, and outputs
 
- Chat history and PDF report prepared
 
- All code split for clarity and modularity
 
 💡 Future Enhancements
 Add GUI or Streamlit interface
