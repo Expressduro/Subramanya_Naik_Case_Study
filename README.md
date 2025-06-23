@@ -38,7 +38,7 @@ Given financial news articles, build an AI system that can intelligently route t
 > - OpenAI API key
 > - `git` installed
 
-### ✅ Clone the repository:
+ ✅ Clone the repository:
 
 ```bash
 git clone https://github.com/your-username/your-repo-name.git
