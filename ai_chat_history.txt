@@ -1,0 +1,838 @@
+Build a multi-agent system using Pydantic AI that demonstrates your ability to:
+- Design specialized AI agents that work together
+- Engineer and iterate on prompts
+- Build evaluation frameworks
+- Document your thinking process
+
+You have TWO options to choose from:
+1. Customer Support Ticket Analyzer & Router
+2. Financial News Impact Analyzer
+
+What We're Looking For
+
+- Problem-solving approach over perfect code
+- Clear thinking documented through your iterations
+- Practical solutions that could work in production
+- Self-learning ability (you'll need to read Pydantic AI docs)
+
+Submission Instructions
+
+1. Complete ONE of the two case study options
+2. Push your code to a public GitHub repository including:
+- Your working code
+- Your full AI conversation history (as ai_chat_history.txt)
+- Documentation of your approach
+3. Reply to this email with:
+- GitHub repository link
+- Brief write-up of what didn't work and why (5-10 bullet points)
+- (Optional but recommended) Video link (3-5 mins) explaining your approach
+- Simple screen recording is fine
+- Candidates with videos get priority review
+
+so lets do 2nd option assignmnt about finance as we did earlier lets do usig pydantic so based on evaluation and submission criteria keeping it in mind give a proper guide how to achieve this first than i will tell you waht to do give only guide now 
+
+
+ChatGPT said:
+Great! Since you've chosen Option B: Financial News Impact Analyzer, here’s a structured step-by-step guide to help you successfully complete the multi-agent system using Pydantic AI, keeping in mind the deliverables and evaluation criteria from the case study PDF:
+
+✅ 1. Understand the Goal
+Build a multi-agent system that:
+
+Analyzes financial news articles.
+
+Assesses their potential market impact.
+
+Has at least 2 distinct AI agents with different perspectives.
+
+Uses Pydantic AI for building and orchestrating the agents.
+
+✅ 2. Plan the Multi-Agent Architecture
+You'll need at least two agents with different specializations:
+
+Agent Name	Purpose
+🧠 SentimentAgent	Analyzes the tone (positive/negative/neutral) of the article headline + body.
+📈 MarketImpactAgent	Predicts the potential market impact (high/medium/low) based on content, company size, sector, etc.
+(Optional) FactRiskAgent	Flags any forward-looking statements, regulatory issues, uncertainty, etc.
+
+✅ 3. Design the System Architecture
+Your folder should look like this:
+
+perl
+Copy
+Edit
+your-name-case-study/
+├── main.py                  # Entrypoint that runs everything
+├── agents/
+│   ├── sentiment_agent.py
+│   └── impact_agent.py
+├── evaluation/
+│   ├── metrics.py
+│   └── test_cases.json     # Contains 5 given test articles
+├── docs/
+│   └── architecture.md     # Diagrams, rationale, prompt iterations
+├── ai_chat_history.txt     # This conversation + iterations
+└── README.md
+✅ 4. Use Pydantic AI for Agents
+Use Pydantic AI to build LLM-backed agents with structured inputs/outputs.
+
+Each agent will inherit from BaseModel and return structured responses like:
+
+python
+Copy
+Edit
+class SentimentResponse(BaseModel):
+    sentiment: Literal["positive", "neutral", "negative"]
+    confidence: float
+Wrap each LLM call using Pydantic AI’s ai_function() for prompt-based agents.
+
+✅ 5. Engineer Prompts Iteratively
+Each agent should go through:
+
+V1 Prompt — Start simple
+
+V2 Prompt — Add more nuance and constraints
+
+V3 Prompt — Add examples or fine control
+
+Document these in docs/prompt_iterations.md like:
+
+makefile
+Copy
+Edit
+### SentimentAgent Prompt - Iteration 1
+Prompt: "Analyze the sentiment of the article content. Is it positive, neutral, or negative?"
+
+Problem: Overconfident scores, missed sarcasm.
+
+...
+
+### MarketImpactAgent Prompt - Iteration 2
+Added: "Consider the company size and prior market volatility."
+✅ 6. Build the Evaluation Framework
+Include the 5 test cases from the PDF in evaluation/test_cases.json.
+
+Create 3 metrics at minimum:
+
+Metric	Description
+Consistency Score	Do agents give repeatable results on similar prompts?
+Inter-agent Agreement	Do agents align in judgment (e.g. high sentiment = high market impact)?
+Accuracy vs Baseline	Manually create baseline expected outputs for test articles.
+
+✅ 7. Run Everything in main.py
+In main.py:
+
+Load test cases.
+
+Run each article through the agents.
+
+Collect agent outputs.
+
+Print/Save evaluation results.
+
+✅ 8. Document Everything
+README.md
+
+Purpose, architecture, how to run.
+
+docs/architecture.md
+
+Agent roles, communication, rationale.
+
+docs/prompt_iterations.md
+
+Prompt changes and why.
+
+ai_chat_history.txt
+
+This ChatGPT interaction.
+
+✅ 9. Create GitHub Submission
+Push this folder to GitHub as a public repo.
+
+Include:
+
+Code
+
+Chat history (ai_chat_history.txt)
+
+Prompt rationale
+
+Evaluation results
+
+✅ 10. Make Optional Video (3-5 mins)
+Record your screen.
+
+Walk through the code and your thinking.
+
+Even a Loom or OBS Studio recording is enough.
+
+
+
+i need to install the prerequisites for this and also create the virtual env lets install in that for betterment give code 
+
+
+ChatGPT said:
+Great move! Setting up a clean virtual environment and installing required packages is best practice. Here's a step-by-step guide to do it properly.
+
+✅ 1. Create and Activate a Virtual Environment
+📍 Using venv (standard in Python ≥ 3.6):
+bash
+Copy
+Edit
+# Step 1: Create the environment
+python -m venv venv
+
+# Step 2: Activate it (depending on your OS)
+# On Windows
+venv\Scripts\activate
+
+# On macOS/Linux
+source venv/bin/activate
+✅ 2. Upgrade pip (optional but recommended)
+bash
+Copy
+Edit
+pip install --upgrade pip
+✅ 3. Install Required Packages
+Create a requirements.txt file (recommended)
+📄 requirements.txt:
+
+txt
+Copy
+Edit
+pydantic
+pydantic-ai
+openai  # Only needed if you're using OpenAI under the hood
+Then install all at once:
+
+bash
+Copy
+Edit
+pip install -r requirements.txt
+Alternatively, install manually:
+
+bash
+Copy
+Edit
+pip install pydantic pydantic-ai openai
+✅ 4. Verify Installation
+bash
+Copy
+Edit
+pip list
+Check if you see:
+
+pydantic
+
+pydantic-ai
+
+openai
+
+✅ 5. (Optional) Freeze your environment
+After testing, you can lock all installed versions:
+
+bash
+Copy
+Edit
+pip freeze > requirements.txt
+This ensures reproducibility when others clone your repo.
+
+
+
+1. all the 3 agent should work with minimal code and simple structure and should not include hectic things 
+2. yes try to restructure it 
+3. gpt-4
+
+ChatGPT said:
+Perfect. I’ll create a simple, minimal multi-agent system using Pydantic AI that follows the structure from the bank-support example and uses GPT-4. It will include three agents:
+
+SentimentAgent: Analyzes article tone.
+
+MarketImpactAgent: Estimates high/medium/low impact.
+
+RiskFlagAgent: Flags regulatory or uncertainty risks.
+
+All agents will be orchestrated through a MultiAgent coordinator, and the project will stay clean and minimal.
+
+I’ll get started and let you know once the initial implementation is ready for review.
+
+Research completed in 4m · 14 sources · 71 searches
+Minimal Multi-Agent Financial News Analyzer with Pydantic AI
+
+Multi-Agent Financial News Analysis System
+We implement a simple multi-agent workflow in PydanticAI to analyze financial news articles. Each agent is a PydanticAI Agent that wraps an LLM (GPT-4) with a structured output model. We use one agent to analyze sentiment, one to predict market impact, and one to flag risks (forward-looking uncertainty, regulatory, ethical). Each agent has its own output type (a Pydantic BaseModel) defining the fields of its response. A coordinating class (FinancialNewsAnalyzer) runs the three agents in sequence and aggregates their results. This follows the design of the PydanticAI bank-support example, where each agent has a system prompt and a structured output type
+ai.pydantic.dev
+ai.pydantic.dev
+.
+SentimentAgent: Classifies the article as positive, neutral, or negative, and provides a confidence score (0–1) and reasoning.
+MarketImpactAgent: Predicts the market impact level (high, medium, low) and gives a brief justification.
+RiskFlagAgent: Checks for any forward-looking uncertainty, regulatory risk, or ethical risk in the article (each as a boolean flag), with explanatory notes.
+Each agent is defined with pydantic_ai.Agent, specifying the GPT-4 model, a clear system prompt describing its task, and a output_type model. For example, the bank-support tutorial shows creating an agent with Agent('openai:gpt-4o', output_type=SupportOutput, system_prompt=...)
+ai.pydantic.dev
+. We follow this pattern: each agent’s system prompt instructs the model how to format its answer as the defined Pydantic model. The FinancialNewsAnalyzer class then runs each agent on the same article text and returns a combined structured result (programmatic agent hand-off)
+ai.pydantic.dev
+ai.pydantic.dev
+.
+python
+Copy
+Edit
+# financial_news_analysis.py
+
+from pydantic import BaseModel, Field
+from pydantic_ai import Agent
+
+# --- Define Output Models for each agent ---
+
+class SentimentOutput(BaseModel):
+    """Structured output for sentiment analysis."""
+    sentiment: str = Field(description="Positive, neutral, or negative sentiment")
+    confidence: float = Field(ge=0.0, le=1.0, description="Confidence score (0–1)")
+    reasoning: str = Field(description="Brief explanation of the sentiment decision")
+
+# Agent for sentiment analysis of financial news
+sentiment_agent = Agent(
+    'openai:gpt-4o',
+    output_type=SentimentOutput,
+    system_prompt=(
+        "You are a financial news sentiment analyzer. "
+        "Given a news article, classify its overall sentiment as 'positive', 'neutral', or 'negative'. "
+        "Provide a confidence (0 to 1) and a short reasoning. "
+        "Answer in JSON with fields (sentiment, confidence, reasoning)."
+    ),
+)
+
+class MarketImpactOutput(BaseModel):
+    """Structured output for market impact prediction."""
+    impact: str = Field(description="Market impact level: high, medium, or low")
+    confidence: float = Field(ge=0.0, le=1.0, description="Confidence score (0–1)")
+    justification: str = Field(description="Explanation of the predicted impact level")
+
+# Agent for predicting market impact level
+market_agent = Agent(
+    'openai:gpt-4o',
+    output_type=MarketImpactOutput,
+    system_prompt=(
+        "You are an expert financial analyst. "
+        "Given a news article, predict the potential market impact level: 'high', 'medium', or 'low'. "
+        "Provide a confidence (0 to 1) and a brief justification. "
+        "Answer in JSON with fields (impact, confidence, justification)."
+    ),
+)
+
+class RiskOutput(BaseModel):
+    """Structured output for risk flags in the article."""
+    forward_looking_uncertainty: bool = Field(description="True if forward-looking uncertainty is present")
+    regulatory_risk: bool = Field(description="True if regulatory risk is present")
+    ethical_risk: bool = Field(description="True if ethical issues are present")
+    notes: str = Field(description="Explanation of any detected risks")
+
+# Agent for flagging risks in the article
+risk_agent = Agent(
+    'openai:gpt-4o',
+    output_type=RiskOutput,
+    system_prompt=(
+        "You are a risk assessment agent. "
+        "Analyze the article for the following: forward-looking uncertainty, regulatory risk, or ethical risk. "
+        "For each, return True or False. "
+        "Include a short note explaining any risks found. "
+        "Answer in JSON with fields (forward_looking_uncertainty, regulatory_risk, ethical_risk, notes)."
+    ),
+)
+
+# --- MultiAgent Wrapper ---
+
+class AnalysisOutput(BaseModel):
+    """Combined output from all agents."""
+    sentiment: SentimentOutput
+    market_impact: MarketImpactOutput
+    risks: RiskOutput
+
+class FinancialNewsAnalyzer:
+    """Coordinates the three agents to analyze a financial news article."""
+    def __init__(self):
+        # Agents are already instantiated above as globals
+        self.sentiment = sentiment_agent
+        self.market = market_agent
+        self.risk = risk_agent
+
+    def analyze(self, article: str) -> AnalysisOutput:
+        # Run each agent synchronously on the article text
+        sentiment_result = self.sentiment.run_sync(article)
+        market_result = self.market.run_sync(article)
+        risk_result = self.risk.run_sync(article)
+        # Aggregate outputs into a single Pydantic model
+        return AnalysisOutput(
+            sentiment=sentiment_result.output,
+            market_impact=market_result.output,
+            risks=risk_result.output
+        )
+
+
+
+see i am doing the finance related agent so i have to do the option 2 task so tell me based on the test cases given for input how can i create the thing as i have created 3 different agent in vscode like 
+impact_agent,metrics agent, sentiment agent in agents section as given and also i ave created a main.py file correclt and also installed necessary libraries where in general i need to shit the google collab code with vscode dividing it and in test_cases.json i have to keep the 5 test cases gvien so the code which i run on collab is 
+
+# financial_news_analysis.py
+
+from pydantic_ai import Agent
+from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.providers.openai import OpenAIProvider
+from pydantic import BaseModel, Field
+from pydantic_ai import settings
+from google.colab import userdata  # Only needed in Colab
+
+# ✅ Set your OpenAI key and model
+settings.api_key = userdata.get("OPENAI_API_KEY")  # Pulls from Colab Secrets
+  # Or use "gpt-4" if preferred
+
+# --- Define output models ---
+
+class SentimentOutput(BaseModel):
+    sentiment: str = Field(description="positive, neutral, or negative")
+    confidence: float = Field(ge=0.0, le=1.0)
+    reasoning: str
+
+class MarketImpactOutput(BaseModel):
+    impact: str = Field(description="high, medium, or low")
+    confidence: float = Field(ge=0.0, le=1.0)
+    justification: str
+
+class RiskOutput(BaseModel):
+    forward_looking_uncertainty: bool
+    regulatory_risk: bool
+    ethical_risk: bool
+    notes: str
+
+# --- Define agents ---
+
+sentiment_agent = Agent(
+    model=OpenAIModel(
+        "gpt-4o",
+        provider=OpenAIProvider(api_key=userdata.get("OPENAI_API_KEY"))
+    ),
+    output_type=SentimentOutput,
+    system_prompt=(
+        "You are a financial sentiment analyzer. "
+        "Classify the article as positive, neutral, or negative. "
+        "Give a confidence score between 0-1 and reasoning in 1-2 lines."
+    ),
+)
+
+market_agent = Agent(
+    model=OpenAIModel(
+        "gpt-4o",
+        provider=OpenAIProvider(api_key=userdata.get("OPENAI_API_KEY"))
+    ),
+    output_type=MarketImpactOutput,
+    system_prompt=(
+        "You are a market impact predictor. "
+        "Estimate if the article will have a high, medium, or low impact on the market. "
+        "Provide confidence and a short justification."
+    ),
+)
+
+risk_agent = Agent(
+    model=OpenAIModel(
+        "gpt-4o",
+        provider=OpenAIProvider(api_key=userdata.get("OPENAI_API_KEY"))
+    ),
+    output_type=RiskOutput,
+    system_prompt=(
+        "You are a risk analyst. "
+        "Check the article for forward-looking uncertainty, regulatory risks, or ethical risks. "
+        "Mark each as True/False and explain why."
+    ),
+)
+
+# --- Multi-agent orchestrator ---
+
+class AnalysisOutput(BaseModel):
+    sentiment: SentimentOutput
+    market_impact: MarketImpactOutput
+    risks: RiskOutput
+
+class FinancialNewsAnalyzer:
+    def analyze(self, article: str) -> AnalysisOutput:
+        return AnalysisOutput(
+            sentiment=sentiment_agent.run_sync(article).output,
+            market_impact=market_agent.run_sync(article).output,
+            risks=risk_agent.run_sync(article).output
+        )
+
+# --- Example usage ---
+
+if __name__ == "__main__":
+    import asyncio
+
+    article = (
+        "TechCorp announced a breakthrough AI chip that could revolutionize processing power. "
+        "Investors showed early optimism, although regulatory approval is still pending."
+    )
+
+    analyzer = FinancialNewsAnalyzer()
+    result = await asyncio.to_thread(analyzer.analyze, article)
+    print(result.model_dump_json(indent=2))
+
+and output i got is :
+
+{
+  "sentiment": {
+    "sentiment": "positive",
+    "confidence": 0.85,
+    "reasoning": "The article highlights investor optimism and the potential breakthrough of the AI chip, presenting a generally positive outlook with a minor reservation about regulatory approval."
+  },
+  "market_impact": {
+    "impact": "high",
+    "confidence": 0.85,
+    "justification": "The announcement of a breakthrough AI chip by TechCorp suggests a significant advancement in technology, likely leading to increased investor interest and potential shifts in market dynamics. The early optimism among investors indicates a strong positive sentiment, although the pending regulatory approval introduces some uncertainty. However, given the potential for revolutionizing processing power, the overall market impact is expected to be high."
+  },
+  "risks": {
+    "forward_looking_uncertainty": true,
+    "regulatory_risk": true,
+    "ethical_risk": false,
+    "notes": "The breakthrough AI chip presents forward-looking uncertainty as it is a new technology and its market impact and performance are still speculative. Regulatory risk is present since the chip requires approval, which is pending, and regulatory requirements might change or influence the approval process. There's no explicit ethical risk mentioned in this context."
+  }
+}
+
+so now give me separatecodes to add in separate .py files to run all the test caes effectively remeber it should be like the way it is working now an also give how to add .env for open ai thing and list out the test cases to add in test_cases.json
+
+
+ChatGPT said:
+Perfect! You’ve done a great job getting the full pipeline working. Now let’s break it down into a clean multi-file structure in VSCode, organize it properly, and give you the test runner + .env + test_cases.json setup — exactly aligned with what you're running successfully in Colab.
+
+✅ Final Project Structure (for Option 2 - Financial News Impact Analyzer)
+pgsql
+Copy
+Edit
+your-name-case-study/
+├── agents/
+│   ├── sentiment_agent.py
+│   ├── impact_agent.py
+│   └── risk_agent.py
+├── evaluation/
+│   ├── test_cases.json
+│   └── run_tests.py
+├── main.py
+├── analyzer.py
+├── .env
+├── requirements.txt
+└── README.md
+✅ Step-by-Step Code Split
+1. 🔍 .env (store your OpenAI key safely)
+.env:
+
+env
+Copy
+Edit
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+2. 📦 agents/sentiment_agent.py
+python
+Copy
+Edit
+from pydantic import BaseModel, Field
+from pydantic_ai import Agent
+from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.providers.openai import OpenAIProvider
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+class SentimentOutput(BaseModel):
+    sentiment: str = Field(description="positive, neutral, or negative")
+    confidence: float = Field(ge=0.0, le=1.0)
+    reasoning: str
+
+sentiment_agent = Agent(
+    model=OpenAIModel(
+        "gpt-4o",
+        provider=OpenAIProvider(api_key=os.getenv("OPENAI_API_KEY"))
+    ),
+    output_type=SentimentOutput,
+    system_prompt=(
+        "You are a financial sentiment analyzer. "
+        "Classify the article as positive, neutral, or negative. "
+        "Give a confidence score between 0-1 and reasoning in 1-2 lines."
+    ),
+)
+3. 📦 agents/impact_agent.py
+python
+Copy
+Edit
+from pydantic import BaseModel, Field
+from pydantic_ai import Agent
+from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.providers.openai import OpenAIProvider
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+class MarketImpactOutput(BaseModel):
+    impact: str = Field(description="high, medium, or low")
+    confidence: float = Field(ge=0.0, le=1.0)
+    justification: str
+
+market_agent = Agent(
+    model=OpenAIModel(
+        "gpt-4o",
+        provider=OpenAIProvider(api_key=os.getenv("OPENAI_API_KEY"))
+    ),
+    output_type=MarketImpactOutput,
+    system_prompt=(
+        "You are a market impact predictor. "
+        "Estimate if the article will have a high, medium, or low impact on the market. "
+        "Provide confidence and a short justification."
+    ),
+)
+4. 📦 agents/risk_agent.py
+python
+Copy
+Edit
+from pydantic import BaseModel, Field
+from pydantic_ai import Agent
+from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.providers.openai import OpenAIProvider
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+class RiskOutput(BaseModel):
+    forward_looking_uncertainty: bool
+    regulatory_risk: bool
+    ethical_risk: bool
+    notes: str
+
+risk_agent = Agent(
+    model=OpenAIModel(
+        "gpt-4o",
+        provider=OpenAIProvider(api_key=os.getenv("OPENAI_API_KEY"))
+    ),
+    output_type=RiskOutput,
+    system_prompt=(
+        "You are a risk analyst. "
+        "Check the article for forward-looking uncertainty, regulatory risks, or ethical risks. "
+        "Mark each as True/False and explain why."
+    ),
+)
+5. 🔁 analyzer.py — Multi-Agent Coordinator
+python
+Copy
+Edit
+from agents.sentiment_agent import sentiment_agent, SentimentOutput
+from agents.impact_agent import market_agent, MarketImpactOutput
+from agents.risk_agent import risk_agent, RiskOutput
+from pydantic import BaseModel
+
+class AnalysisOutput(BaseModel):
+    sentiment: SentimentOutput
+    market_impact: MarketImpactOutput
+    risks: RiskOutput
+
+class FinancialNewsAnalyzer:
+    def analyze(self, article: str) -> AnalysisOutput:
+        return AnalysisOutput(
+            sentiment=sentiment_agent.run_sync(article).output,
+            market_impact=market_agent.run_sync(article).output,
+            risks=risk_agent.run_sync(article).output
+        )
+6. 🧪 evaluation/test_cases.json
+Add the 5 test cases from the PDF:
+
+json
+Copy
+Edit
+[
+  {
+    "article_id": "FIN-001",
+    "headline": "Tesla crushes Q3 expectations with record profits, but Musk warns of 'turbulent times ahead'",
+    "content": "Tesla (NASDAQ: TSLA) reported stunning Q3 results with earnings of $1.05 per share...",
+    "published_at": "2024-10-22T16:00:00Z"
+  },
+  {
+    "article_id": "FIN-002",
+    "headline": "Small biotech CureGen soars on FDA approval, analysts remain skeptical",
+    "content": "CureGen (NASDAQ: CURE), a small-cap biotech, received FDA approval for its novel compound...",
+    "published_at": "2024-11-01T14:30:00Z"
+  },
+  {
+    "article_id": "FIN-003",
+    "headline": "Amazon announces 'transformational' AI venture, but at massive cost",
+    "content": "Amazon (NASDAQ: AMZN) unveiled Project Olympus, a $50 billion investment in AGI development...",
+    "published_at": "2024-09-15T09:00:00Z"
+  },
+  {
+    "article_id": "FIN-004",
+    "headline": "Regional bank FirstState posts record earnings amid industry turmoil",
+    "content": "FirstState Bank (NYSE: FSB) reported record Q2 earnings of $3.20 per share, up 45%...",
+    "published_at": "2024-10-12T10:30:00Z"
+  },
+  {
+    "article_id": "FIN-005",
+    "headline": "China tech giant ByteDance reports stellar growth, regulatory clouds remain",
+    "content": "ByteDance, TikTok's parent company, leaked financials show revenue grew 70% to $120 billion...",
+    "published_at": "2024-11-21T18:45:00Z"
+  }
+]
+7. ✅ evaluation/run_tests.py — Runs all test cases
+python
+Copy
+Edit
+import json
+from analyzer import FinancialNewsAnalyzer
+
+with open("evaluation/test_cases.json", "r") as f:
+    test_cases = json.load(f)
+
+analyzer = FinancialNewsAnalyzer()
+
+for i, article in enumerate(test_cases):
+    print(f"\n--- Test Case {i + 1} ({article['article_id']}) ---")
+    text = f"{article['headline']}\n\n{article['content']}"
+    result = analyzer.analyze(text)
+    print(result.model_dump_json(indent=2))
+8. 🖥 main.py — Single run example
+python
+Copy
+Edit
+from analyzer import FinancialNewsAnalyzer
+
+article = (
+    "TechCorp announced a breakthrough AI chip that could revolutionize processing power. "
+    "Investors showed early optimism, although regulatory approval is still pending."
+)
+
+analyzer = FinancialNewsAnalyzer()
+result = analyzer.analyze(article)
+print(result.model_dump_json(indent=2))
+9. 📦 requirements.txt
+txt
+Copy
+Edit
+pydantic
+pydantic-ai
+python-dotenv
+✅ Run Commands
+Install everything:
+
+bash
+Copy
+Edit
+pip install -r requirements.txt
+Then run test cases:
+
+bash
+Copy
+Edit
+python evaluation/run_tests.py
+Or test one article:
+
+bash
+Copy
+Edit
+python main.py
+Let me know if you want:
+
+Markdown or PDF auto-export of results
+
+Test metric calculation (accuracy, consistency, confidence-level trends)
+
+Ready to help make your submission production-grade.
+
+
+do one thing keep things in main.py and run_tests.py only as analyzer.py is not separately needed include it in man only 
+
+
+ChatGPT said:
+Perfect — let's simplify it as requested:
+
+✅ Final Directory Structure
+pgsql
+Copy
+Edit
+your-name-case-study/
+├── agents/
+│   ├── sentiment_agent.py
+│   ├── impact_agent.py
+│   └── risk_agent.py
+├── evaluation/
+│   ├── test_cases.json
+│   └── run_tests.py
+├── main.py
+├── .env
+├── requirements.txt
+✅ 1. 🧠 main.py — One-off run + all agents + orchestration
+python
+Copy
+Edit
+import os
+from dotenv import load_dotenv
+from agents.sentiment_agent import sentiment_agent, SentimentOutput
+from agents.impact_agent import market_agent, MarketImpactOutput
+from agents.risk_agent import risk_agent, RiskOutput
+from pydantic import BaseModel
+
+load_dotenv()
+
+class AnalysisOutput(BaseModel):
+    sentiment: SentimentOutput
+    market_impact: MarketImpactOutput
+    risks: RiskOutput
+
+def analyze_article(article: str) -> AnalysisOutput:
+    return AnalysisOutput(
+        sentiment=sentiment_agent.run_sync(article).output,
+        market_impact=market_agent.run_sync(article).output,
+        risks=risk_agent.run_sync(article).output
+    )
+
+if __name__ == "__main__":
+    article = (
+        "TechCorp announced a breakthrough AI chip that could revolutionize processing power. "
+        "Investors showed early optimism, although regulatory approval is still pending."
+    )
+    result = analyze_article(article)
+    print(result.model_dump_json(indent=2))
+✅ 2. 🧪 evaluation/run_tests.py — Apply on all 5 test cases
+python
+Copy
+Edit
+import json
+from main import analyze_article
+
+with open("evaluation/test_cases.json", "r") as f:
+    test_cases = json.load(f)
+
+for i, article in enumerate(test_cases):
+    print(f"\n--- Test Case {i + 1} ({article['article_id']}) ---")
+    full_text = f"{article['headline']}\n\n{article['content']}"
+    result = analyze_article(full_text)
+    print(result.model_dump_json(indent=2))
+✅ 3. 🧪 evaluation/test_cases.json
+(Already provided earlier — includes 5 sample financial articles.)
+
+🔑 4. .env
+env
+Copy
+Edit
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+🧪 5. Install Everything
+bash
+Copy
+Edit
+pip install -r requirements.txt
+And run:
+
+bash
+Copy
+Edit
+python main.py         # Single article test
+python evaluation/run_tests.py   # Full test set
+Let me know if you want to also:
+
+Save test results to a .json or .md report
+
+Score metrics across cases
+
+Package it into a GitHub-ready repo
