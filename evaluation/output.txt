@@ -1,0 +1,102 @@
+--- Test Case 1 (FIN-001) ---
+{
+  "sentiment": {
+    "sentiment": "neutral",
+    "confidence": 0.7,
+    "reasoning": "Despite record profits signaling positive performance, Elon Musk's warning of 'turbulent times ahead' balances the sentiment, making it more neutral overall."
+  },
+  "market_impact": {
+    "impact": "high",
+    "confidence": 0.9,
+    "justification": "Tesla's record-breaking profits significantly surpassing expectations will likely have a high impact on the market due to the company's immense influence in the automotive and stock market sectors. However, Elon Musk's warning about 'turbulent times ahead' introduces uncertainty, which could temper the positive impact. Nonetheless, Tesla's strong performance is likely to garner significant attention from investors."
+  },
+  "risks": {
+    "forward_looking_uncertainty": true,
+    "regulatory_risk": false,
+    "ethical_risk": false,
+    "notes": "While Tesla's Q3 results were stellar, Elon Musk's statement about 'turbulent times ahead' indicates forward-looking uncertainty. This could relate to various factors including market conditions, supply chain issues, or competition. There is no specific mention of regulatory or ethical risks in the article, hence they are marked as false."
+  }
+}
+
+--- Test Case 2 (FIN-002) ---
+{
+  "sentiment": {
+    "sentiment": "positive",
+    "confidence": 0.8,
+    "reasoning": "Despite analysts' skepticism, FDA approval is a significant positive event for biotech companies, generally leading to increased investor confidence and stock price surge."
+  },
+  "market_impact": {
+    "impact": "medium",
+    "confidence": 0.8,
+    "justification": "FDA approvals typically lead to positive movements in stocks, especially for small-cap biotech companies like CureGen, as they signal potential for revenue generation and market growth. However, the article also mentions skepticism from analysts, indicating that there may be concerns about the long-term viability or market potential of the product. This mixed sentiment suggests that while there may be an immediate positive reaction, it may not sustain or translate into a high impact without further validation. Hence, a medium impact is likely with relatively high confidence."
+  },
+  "risks": {
+    "forward_looking_uncertainty": true,
+    "regulatory_risk": true,
+    "ethical_risk": false,
+    "notes": "The forward-looking uncertainty is true due to the unpredictable nature of biotech market performance and the uncertainty in adopting the novel compound. Regulatory risk is true because navigating ongoing compliance post-approval and potential changes in regulatory policy pose 
+risks. Ethical risk is false as the article doesn't mention any ethical concerns related to the compound or its approval."
+  }
+}
+
+--- Test Case 3 (FIN-003) ---
+{
+  "sentiment": {
+    "sentiment": "negative",
+    "confidence": 0.7,
+    "reasoning": "The article highlights a 'massive cost' associated with Amazon's AI venture, suggesting potential financial concerns."
+  },
+  "market_impact": {
+    "impact": "high",
+    "confidence": 0.9,
+    "justification": "Amazon's announcement of a massive $50 billion investment in Artificial General Intelligence (AGI) is highly likely to have 
+a significant impact on the market. Such a large-scale investment by a major player like Amazon indicates a strong commitment to advancing AI technology, which could lead to substantial technological breakthroughs and shifts in the competitive landscape. This news could influence investor sentiment positively or negatively, depending on perceived risks and opportunities, and is likely to affect stock prices and the broader tech market."
+  },
+  "risks": {
+    "forward_looking_uncertainty": true,
+    "regulatory_risk": true,
+    "ethical_risk": true,
+    "notes": "The announcement of a $50 billion investment in AGI development underlines a significant forward-looking uncertainty due to the high-risk nature of developing AGI. The outcomes are speculative and the impact on Amazon's financials is uncertain.\n\nRegulatory risk is evident as 
+the development of AI, especially AGI, is under intense scrutiny worldwide. There could be future legislation affecting the deployment and commercialization of such technology.\n\nEthical risks are inherent in AGI development, including potential misuse, biases within AI systems, privacy concerns, and the impact on employment. These risks necessitate careful consideration and management."
+  }
+}
+
+--- Test Case 4 (FIN-004) ---
+{
+  "sentiment": {
+    "sentiment": "positive",
+    "confidence": 0.95,
+    "reasoning": "The article highlights FirstState Bank's record earnings and significant growth despite industry challenges, indicating strong financial performance."
+  },
+  "market_impact": {
+    "impact": "medium",
+    "confidence": 0.85,
+    "justification": "The record earnings report from FirstState Bank amid industry turmoil suggests a positive signal for this specific bank, likely resulting in a positive short-term market impact for FirstState's stock. However, given that the overall industry is experiencing turmoil, the broader market impact may be moderated by continued uncertainties and challenges faced by other banks. Thus, the impact is likely medium."       
+  },
+  "risks": {
+    "forward_looking_uncertainty": true,
+    "regulatory_risk": false,
+    "ethical_risk": false,
+    "notes": "FirstState's record earnings amidst industry turmoil suggest forward-looking uncertainty. This uncertainty arises from potential volatility in the banking industry, which may impact future performance. No specific regulatory or ethical risks were mentioned in the excerpt provided."
+  }
+}
+
+--- Test Case 5 (FIN-005) ---
+{
+  "sentiment": {
+    "sentiment": "positive",
+    "confidence": 0.8,
+    "reasoning": "The article reports a significant 70% revenue growth for ByteDance, which is a positive financial indicator despite some regulatory challenges mentioned."
+  },
+  "market_impact": {
+    "impact": "medium",
+    "confidence": 0.8,
+    "justification": "ByteDance's significant revenue growth indicates strong business performance, which is likely to have a positive impact on market sentiment. However, the mention of regulatory issues suggests potential challenges that could dampen investor enthusiasm. The balance between these factors suggests a medium market impact. Moreover, as ByteDance is a private company, the direct impact may primarily be observed in sectors related to digital advertising and social media, rather than broader market indices."
+  },
+  "risks": {
+    "forward_looking_uncertainty": true,
+    "regulatory_risk": true,
+    "ethical_risk": false,
+    "notes": "ByteDance's financial growth indicates forward-looking uncertainty, especially considering potential global economic changes and market competition. There are evident regulatory risks due to increasing scrutiny on data privacy and security in countries where ByteDance operates, notably because of TikTok's global influence and data practices. Ethical risks are not immediately clear from the financial growth data itself, as it focuses on economic performance rather than specific practices or controversies."
+  }
+}
