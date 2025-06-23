@@ -2,7 +2,7 @@
 
 ---
 
-```markdown
+
 # 🧠 Financial News Impact Analyzer — Multi-Agent System (Draconic AI Case Study)
 
 This project implements a **multi-agent AI system** using `pydantic-ai` and OpenAI's GPT-4o to analyze financial news articles. It simulates a team of specialized agents to:
